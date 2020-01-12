@@ -1,0 +1,16 @@
+.thumbnail img{
+	width: 100%;
+}
+
+.thumbnail{
+	padding: 0px;
+}
+
+.thumbnail .caption-full{
+	padding: 9px;
+}
+
+/* the delete button was encased in form and forms not an inline element*/
+.delete-form {
+	display: inline;
+}
