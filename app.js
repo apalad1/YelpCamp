@@ -21,7 +21,20 @@ var commentRoutes = require("./routes/comments"),
 
 //
 
-mongoose.connect("mongodb://localhost/yelp_camp_v12"); //<-which database is holding it
+//****************CONNECT TO MONGO ATLAS DB **************************************
+//the <password> is replaced by the mongodb password not the mongo atlas one, that also includes taking out the < >
+//the 'aleck' is just my name, its based on your mongo username
+//this link is only for my account, if you want to recreate this you'll need to create your own cluster on mongodb
+mongoose.connect('mongodb+srv://aleck:<password>@cluster0-iavbd.mongodb.net/test?retryWrites=true&w=majority', {
+	useNewUrlParser: true,
+	useCreateIndex: true
+}).then(() => {
+	console.log('connected to db');
+}).catch(err => {
+	console.log('ERROR: ', err.message);
+});
+
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -57,6 +70,12 @@ app.use("/campgrounds", campgroundRoutes);
 // thats why we can leave campground js at "/" 
 //same idea with commentRoutes
 
-app.listen(3000, () => {
-    console.log("yelpcamp started");
-});
+//***************************SERVER CONNECTION **************************
+// the first one connects to 3000 which is for when it's used in Goorm IDE
+// the second one is for heroku
+
+//app.listen(3000, () => {
+   // console.log("yelpcamp started");
+//});
+
+app.listen(process.env.PORT, process.env.IP);
