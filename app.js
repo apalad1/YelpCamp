@@ -25,6 +25,9 @@ var commentRoutes = require("./routes/comments"),
 //the <password> is replaced by the mongodb password not the mongo atlas one, that also includes taking out the < >
 //the 'aleck' is just my name, its based on your mongo username
 //this link is only for my account, if you want to recreate this you'll need to create your own cluster on mongodb
+
+//can also do 
+//mongoose.connect(process.env.DATABASEURL);
 mongoose.connect('<put in your database url and credentials in here>', {
 	useNewUrlParser: true,
 	useCreateIndex: true
